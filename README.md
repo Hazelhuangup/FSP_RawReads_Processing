@@ -155,4 +155,4 @@ The other members of the FSP bioinformatics team, [Lia Obinu](https://github.com
 ## References
 1. P. Di Tommaso, et al. Nextflow enables reproducible computational workflows. Nature Biotechnology 35, 316–319 (2017) doi:10.1038/nbt.3820
 2. Shifu Chen, et al, fastp: an ultra-fast all-in-one FASTQ preprocessor, Bioinformatics 34(17) 884–890 (2018), https://doi.org/10.1093/bioinformatics/bty560
-3. de Sena Brandine G and Smith AD. Falco: high-speed FastQC emulation for quality control of sequencing data. F1000Research 2021, 8:1874 (https://doi.org/10.12688/f1000research.21142.2)
+3. de Sena Brandine G and Smith AD. Falco: high-speed FastQC emulation for quality control of sequencing data. F1000Research 8, 1874 (2021), https://doi.org/10.12688/f1000research.21142.2)
