@@ -2,7 +2,6 @@
 
 #SBATCH --job-name=QC_NF
 #SBATCH --export=ALL
-#SBATCH --mail-user=whuang@kew.org
 #SBATCH --partition=medium
 #SBATCH --output=QC_MAIN.log
 #SBATCH --cpus-per-task=1
