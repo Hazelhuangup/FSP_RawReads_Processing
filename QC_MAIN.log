@@ -1,0 +1,89 @@
+
+ N E X T F L O W   ~  version 25.09.2-edge
+
+Launching `ReadQC.nf` [elegant_khorana] DSL2 - revision: 58fc504a52
+
+[-        ] falcoQC           -
+[-        ] fastp             -
+[-        ] falcoQCafterFastp -
+[-        ] kmerAnalysis      -
+[-        ] fqStat            -
+
+[-        ] falcoQC           | 0 of 1
+[-        ] fastp             | 0 of 1
+[-        ] falcoQCafterFastp -
+[-        ] kmerAnalysis      -
+[-        ] fqStat            -
+
+executor >  slurm (2)
+[7b/ccbf4c] falcoQC (EGP017_25_B2_153) | 0 of 1
+[14/fba4c2] fastp (EGP017_25_B2_153)   | 0 of 1
+[-        ] falcoQCafterFastp          -
+[-        ] kmerAnalysis               -
+[-        ] fqStat                     -
+
+executor >  slurm (2)
+[7b/ccbf4c] falcoQC (EGP017_25_B2_153) | 0 of 1
+[14/fba4c2] fastp (EGP017_25_B2_153)   | 0 of 1
+[-        ] falcoQCafterFastp          -
+[-        ] kmerAnalysis               -
+[-        ] fqStat                     -
+
+executor >  slurm (3)
+[7b/ccbf4c] falcoQC (EGP017_25_B2_153) | 0 of 1
+[14/fba4c2] fastp (EGP017_25_B2_153)   | 1 of 1 ✔
+[-        ] falcoQCafterFastp          | 0 of 1
+[-        ] kmerAnalysis               | 0 of 1
+[ec/0045bc] fqStat (EGP017_25_B2_153)  | 0 of 1
+
+executor >  slurm (5)
+[7b/ccbf4c] falcoQC (EGP017_25_B2_153)     | 0 of 1
+[14/fba4c2] fastp (EGP017_25_B2_153)       | 1 of 1 ✔
+[ef/1abd2e] fal…erFastp (EGP017_25_B2_153) | 0 of 1
+[bc/4a127b] kme…nalysis (EGP017_25_B2_153) | 0 of 1
+[ec/0045bc] fqStat (EGP017_25_B2_153)      | 0 of 1
+
+executor >  slurm (5)
+[7b/ccbf4c] falcoQC (EGP017_25_B2_153)     | 0 of 1
+[14/fba4c2] fastp (EGP017_25_B2_153)       | 1 of 1 ✔
+[ef/1abd2e] fal…erFastp (EGP017_25_B2_153) | 0 of 1
+[bc/4a127b] kme…nalysis (EGP017_25_B2_153) | 0 of 1
+[ec/0045bc] fqStat (EGP017_25_B2_153)      | 0 of 1
+
+executor >  slurm (5)
+[7b/ccbf4c] falcoQC (EGP017_25_B2_153)     | 1 of 1 ✔
+[14/fba4c2] fastp (EGP017_25_B2_153)       | 1 of 1 ✔
+[ef/1abd2e] fal…erFastp (EGP017_25_B2_153) | 0 of 1
+[bc/4a127b] kme…nalysis (EGP017_25_B2_153) | 0 of 1
+[ec/0045bc] fqStat (EGP017_25_B2_153)      | 0 of 1
+
+executor >  slurm (5)
+[7b/ccbf4c] falcoQC (EGP017_25_B2_153)     | 1 of 1 ✔
+[14/fba4c2] fastp (EGP017_25_B2_153)       | 1 of 1 ✔
+[ef/1abd2e] fal…erFastp (EGP017_25_B2_153) | 1 of 1 ✔
+[bc/4a127b] kme…nalysis (EGP017_25_B2_153) | 0 of 1
+[ec/0045bc] fqStat (EGP017_25_B2_153)      | 1 of 1 ✔
+
+executor >  slurm (5)
+[7b/ccbf4c] falcoQC (EGP017_25_B2_153)     | 1 of 1 ✔
+[14/fba4c2] fastp (EGP017_25_B2_153)       | 1 of 1 ✔
+[ef/1abd2e] fal…erFastp (EGP017_25_B2_153) | 1 of 1 ✔
+[bc/4a127b] kme…nalysis (EGP017_25_B2_153) | 1 of 1 ✔
+[ec/0045bc] fqStat (EGP017_25_B2_153)      | 1 of 1 ✔
+
+executor >  slurm (5)
+[7b/ccbf4c] falcoQC (EGP017_25_B2_153)     | 1 of 1 ✔
+[14/fba4c2] fastp (EGP017_25_B2_153)       | 1 of 1 ✔
+[ef/1abd2e] fal…erFastp (EGP017_25_B2_153) | 1 of 1 ✔
+[bc/4a127b] kme…nalysis (EGP017_25_B2_153) | 1 of 1 ✔
+[ec/0045bc] fqStat (EGP017_25_B2_153)      | 1 of 1 ✔
+Completed at: 13-Nov-2025 23:05:43
+Duration    : 2m 36s
+CPU hours   : 0.2
+Succeeded   : 5
+
+
+Starting job on n24-64-384-dawn
+Job finished
+Starting job on n24-64-384-dawn
+Job finished
