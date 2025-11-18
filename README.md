@@ -2,7 +2,7 @@
 
 [![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A521.10.3-23aa62.svg?labelColor=000000)](https://www.nextflow.io/)
 [![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
-[![DOI](https://zenodo.org/badge/998768660.svg)](https://doi.org/10.5281/zenodo.17608339)
+[![DOI](https://zenodo.org/badge/DOI/17608339.svg)](https://doi.org/10.5281/zenodo.17608339)
 
 ![Bioinformatics team](https://github.com/user-attachments/assets/b8d1ee40-73c1-477d-b7cf-30992de1c884)
 
