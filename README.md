@@ -15,8 +15,6 @@ This workflow was developed for the [Fungarium Sequencing Project (FSP)](https:/
 
 The workflow was designed to process hundreds of samples in parallel. 
 
-Please cite the URL or DOI (10.5281/zenodo.17608339) if you use this workflow in a paper.
-
 - [Nextflow workflow: FSP_RawReads_Processing](#nextflow-workflow-fsp_rawreads_processing)
   - [Overview](#overview)
     - [Input & Output](#input--output)
@@ -139,6 +137,9 @@ less QC_MAIN.log
   - [ORCID profile](https://orcid.org/0000-0002-5015-7167)
 
 The other members of the FSP bioinformatics team, [Lia Obinu](https://github.com/LiaOb21) and [Niall Garvey](https://github.com/NiallG1), and [George Mears](https://github.com/George-Mears) also contributed to the development and testing of this part of the workflow.
+
+## Citation
+Please cite the URL or DOI (10.5281/zenodo.17608339) if you use this workflow in a paper.
 
 ## References
 1. P. Di Tommaso, et al. Nextflow enables reproducible computational workflows. Nature Biotechnology 35, 316–319 (2017) doi:10.1038/nbt.3820
