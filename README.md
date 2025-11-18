@@ -15,7 +15,7 @@ This workflow was developed for the [Fungarium Sequencing Project (FSP)](https:/
 
 The workflow was designed to process hundreds of samples in parallel. 
 
-Please cite the URL or DOI if you use this workflow in a paper.
+Please cite the URL or DOI (10.5281/zenodo.17608339) if you use this workflow in a paper.
 
 - [Nextflow workflow: FSP_RawReads_Processing](#nextflow-workflow-fsp_rawreads_processing)
   - [Overview](#overview)
