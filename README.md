@@ -2,16 +2,18 @@
 
 [![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A521.10.3-23aa62.svg?labelColor=000000)](https://www.nextflow.io/)
 [![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
-[![DOI](https://zenodo.org/badge/998768660.svg)](https://doi.org/10.5281/zenodo.17608339)
+[![DOI](https://zenodo.org/badge/DOI/17608339.svg)](https://doi.org/10.5281/zenodo.17608339)
 
 ![Bioinformatics team](https://github.com/user-attachments/assets/b8d1ee40-73c1-477d-b7cf-30992de1c884)
 
-A nextflow workflow for QC, clean, merge Illumina reads and create kmer profiles. 
 
-This workflow was developed for the [Fungarium Sequencing Project (FSP)](https://www.kew.org/science/our-science/projects/sequencing-kews-fungarium) at Royal Botanic Gardens, Kew. 
+## Overview
 
+This is a nextflow workflow for QC, clean, merge Illumina reads and create kmer profiles. 
 
-Please cite the URL or DOI if you use this workflow in a paper.
+This workflow was developed for the [Fungarium Sequencing Project (FSP)](https://www.kew.org/science/our-science/projects/sequencing-kews-fungarium) at Royal Botanic Gardens, Kew. It may be useful to other projects that deal with difficult samples with degraded DNA for genome assembly purposes.
+
+The workflow was designed to process hundreds of samples in parallel. 
 
 - [Nextflow workflow: FSP_RawReads_Processing](#nextflow-workflow-fsp_rawreads_processing)
   - [Overview](#overview)
@@ -30,22 +32,6 @@ Please cite the URL or DOI if you use this workflow in a paper.
   - [Authors](#authors)
   - [References](#references)
 
-## Overview
-
-
-The workflow was developed to benchmark the performance of different short reads assemblers using hDNA (historical DNA).
-
-It may be useful to other projects that deal with difficult samples as the FSP, and need to find the best short reads assembler(s) for their own case.
-
-The workflow was designed to process several samples in parallel. 
-
-Each sample is assembled using the following assemblers:
-
-
-The best assembly for each sample is then selected. The selection is based on the highest complete and single BUSCO content (absolute number, not percentage). If more than one assembly have the highest complete and single copy BUSCO score, the assembly with the highest aUN (calculated by QUAST) among those is selected.
-
-
-The improved best assembly is then quality assessed again with BUSCO, QUAST, and MerquryFK, and aligned back to the reads with bwa-mem2 and samtools, which is also used to analyse the genome coverage.
 
 ### Input & Output
 Inputs: 
@@ -151,6 +137,9 @@ less QC_MAIN.log
   - [ORCID profile](https://orcid.org/0000-0002-5015-7167)
 
 The other members of the FSP bioinformatics team, [Lia Obinu](https://github.com/LiaOb21) and [Niall Garvey](https://github.com/NiallG1), and [George Mears](https://github.com/George-Mears) also contributed to the development and testing of this part of the workflow.
+
+## Citation
+Please cite the URL or DOI (10.5281/zenodo.17608339) if you use this workflow in a paper.
 
 ## References
 1. P. Di Tommaso, et al. Nextflow enables reproducible computational workflows. Nature Biotechnology 35, 316–319 (2017) doi:10.1038/nbt.3820
