@@ -26,8 +26,7 @@ process kmerAnalysis {
     tail -n +251 ${sample_ID}.reads.kmer_freq.hist | awk '{sum += 1}END{print ">250",sum}' >> ${sample_ID}.250.kmer_freq.hist
     kmer_freq_draw.py ${sample_ID}.250.kmer_freq.hist ${sample_ID}.reads.kmer_freq.hist.pdf
 
-	echo -n "${sample_ID}" > distinct_kmers.hist
-	grep "processed" ${sample_ID}.log|tail -1| awk '{print \$5}' >${sample_ID}.distinct_kmers.hist
+	grep "processed" ${sample_ID}.log| awk '{print \$3"\t"\$5}' >${sample_ID}.distinct_kmers.hist
 	draw_distinct_kmer_vs_reads.py ${sample_ID}.distinct_kmers.hist
 
     """
