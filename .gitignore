@@ -1,0 +1,14 @@
+# Nextflow logs
+.nextflow.log*
+.nextflow/
+QC_MAIN.log
+
+# Nextflow work directory
+work/
+
+# Statistics output
+statistics/
+
+# Conda / Micromamba envs and locks
+envs/*.lock
+envs/env-*/
