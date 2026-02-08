@@ -111,15 +111,6 @@ sample_ID_ch = Channel.fromPath(params.Li)
                                                             // ========================================================
                                                             // Main workflow
                                                             // ========================================================
-/* workflow {
- * 
- * falcoQC(sample_ID_ch)
- *fastp_out_ch = fastp(sample_ID_ch)
- *falcoQCafterFastp(fastp_out_ch)
- *kmerAnalysis(fastp_out_ch)
- *fqStat_out_ch = fqStat(fastp_out_ch)
- *
- */}
 
 workflow {
 

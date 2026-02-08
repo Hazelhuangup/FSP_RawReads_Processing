@@ -9,7 +9,7 @@ process falcoQCafterFastp {
 	publishDir("${params.OutDir}/01_ReadQC_report/${params.Batch_ID}/after_fastp_QC", mode: 'copy')
 
 	input:
-		tuple val(sample_ID), path(fastp_dir)
+		tuple val(sample_ID), path(fastq_files)
 
 	output:
 		path "${sample_ID}/*txt"
@@ -17,6 +17,7 @@ process falcoQCafterFastp {
 
 	script:
 	"""
-	falco --outdir "${sample_ID}" ${fastp_dir}/*gz
+	mkdir -p ${sample_ID}
+	falco --outdir "${sample_ID}" ${fastq_files}
 	"""
 }

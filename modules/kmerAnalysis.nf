@@ -16,7 +16,7 @@ process kmerAnalysis {
 
     script:
     """
-    yak-count -k 17 -b 20 ${fastp_dir}/${sample_ID}_merge.fq.gz 1>${sample_ID}.reads.kmer_freq.hist 2>${sample_ID}.log
+    yak-count -k 17 ${fastp_dir}/${sample_ID}_merge.fq.gz 1>${sample_ID}.reads.kmer_freq.hist 2>${sample_ID}.log
 
     awk '{sum+=\$1*\$2}END{printf "nkmer: %.0f\\n", sum}' ${sample_ID}.reads.kmer_freq.hist > ${sample_ID}.reads.kmer_freq.stats
     awk 'NR>=6 {if (\$2 > max) {max=\$2; value=\$1}} END {print "peak: " value}' ${sample_ID}.reads.kmer_freq.hist >> ${sample_ID}.reads.kmer_freq.stats
