@@ -19,10 +19,10 @@ Falco -> FastP -> FalcoAfterFastP
 			   -> fqStat(Statistics_Summarize)
 
 Usage:
-1. Create the conda3 environment using 'conda env create --name ReadsQC --file ReadsQC.yml'
+1. Create the conda environment using 'conda env create --name ReadsQC --file env/*.yml'
 2. Update project directory in ReadsQC.sh
 3. Specify required arguments for each step in the nextflow.config file
-4. Submit pipeline using 'sbatch --export=BATCH_ID=06_2025.07.09_EdGen_192_samples ReadsQC.sh'
+4. Submit pipeline using 'sbatch --export=BATCH_ID=Batch_1 ReadsQC.sh'
 
 Required arguments:
   --InDir                                     Path to directory with fastq files (ideally, gzip compressed files)
@@ -111,12 +111,33 @@ sample_ID_ch = Channel.fromPath(params.Li)
                                                             // ========================================================
                                                             // Main workflow
                                                             // ========================================================
+/* workflow {
+ * 
+ * falcoQC(sample_ID_ch)
+ *fastp_out_ch = fastp(sample_ID_ch)
+ *falcoQCafterFastp(fastp_out_ch)
+ *kmerAnalysis(fastp_out_ch)
+ *fqStat_out_ch = fqStat(fastp_out_ch)
+ *
+ */}
+
 workflow {
 
-falcoQC(sample_ID_ch)
-fastp_out_ch = fastp(sample_ID_ch)
-falcoQCafterFastp(fastp_out_ch)
-kmerAnalysis(fastp_out_ch)
-fqStat_out_ch = fqStat(fastp_out_ch)
+    falcoQC(sample_ID_ch)
 
+    fastp_out_ch = fastp(sample_ID_ch)
+
+    fastp_fastq_ch = fastp_out_ch
+        .map { sample_ID, fastp_dir ->
+            def files = file(fastp_dir)
+                .listFiles()
+                .findAll { f -> f.name ==~ /.*(trimmed|merge).*gz/ && f.size() > 0}
+            tuple(sample_ID, files)
+        }
+        .filter { sample_ID, files -> files.size() > 0 }
+
+    falcoQCafterFastp(fastp_fastq_ch)
+    kmerAnalysis(fastp_fastq_ch)
+    fqStat_out_ch = fqStat(fastp_fastq_ch)
 }
+
