@@ -1,17 +1,31 @@
 #!/bin/bash
 
+set -euo pipefail
+
 echo "Starting job on $HOSTNAME"
 
-INPUT_DIR=/mnt/shared/projects/rbgk/projects/FSP/03_Output/01_QC/05_KmerAnalysis/XX
+INPUT_DIR=/mnt/shared/projects/rbgk/projects/FSP/03_Output/01_QC/05_KmerAnalysis/07_2025.10.01_EdGen_03_244_samples
+OUT_DIR="$INPUT_DIR/statistics"
+OUT_CSV="$OUT_DIR/statistics_all.csv"
+PEAK_CSV="$OUT_DIR/kmer_hist_peak_auto_classification.csv"
 
-cd ${INPUT_DIR}
+mkdir -p "$OUT_DIR"
 
-grep 'Est_genome_size' */*kmer_freq.stats >Est_genome_size.txt
-grep 'peak' */*kmer_freq.stats >peak.txt
-grep 'nkmer' */*kmer_freq.stats >nkmer.txt
-for f in */*distinct_kmers.hist; do tail -n 1 "$f" | awk -v name="$f" '{print name, $2}';done > distinct_kmers.txt
+source /mnt/apps/users/whuang/conda/etc/profile.d/conda.sh
+conda activate bioinfo
 
-mkdir -p statistics
-mv *txt statistics
+kmer_hist_peak_auto_classification.py \
+	-f "$INPUT_DIR" \
+	-o "$PEAK_CSV"
 
+kmer_stats_collect.py \
+	--input-dir "$INPUT_DIR" \
+	--peak-csv "$PEAK_CSV" \
+	--out-csv "$OUT_CSV"
+
+statistics_summary_extract.py \
+	"$OUT_CSV" \
+	-o "$OUT_DIR/kmer_profile_statistics_automated.csv"
+
+rm "$PEAK_CSV"
 echo "Job finished"
