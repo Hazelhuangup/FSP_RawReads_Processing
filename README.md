@@ -42,8 +42,7 @@ Raw sequence data by Illumina short read sequencers
 Outputs: 
 - clean, deduplicated reads with < 30bp removed.
 - QC reports for each sample of both raw and clean reads
-- QC statistics of the whole batch, including data size, read number, read length, GC content, duplication leveletc.
-- Sequencing complexity accumulating graphs for each sample
+- QC statistics of the whole batch, including data size, read number, read length, GC content, duplication level etc.
 - K-mer distribution graphs for each sample
 K-mer statistics of the whole batch, including uniq kmer number, total kmer number, estimated genome size, peak coverage etc.
 
@@ -102,9 +101,6 @@ git clone https://github.com/Hazelhuangup/FSP_RawReads_Processing.git
 echo 'export PATH=/your_target_folder/FSP_RawReads_Processing/bin' >> ~/.bashrc
 ```
 - Install [Nextflow](#https://www.nextflow.io/docs/latest/install.html)
-
-- Install [kmer-cnt](#https://github.com/lh3/kmer-cnt?tab=readme-ov-file)
-  -  The robin_hood.h file in this package needs some editing. Replace robin_hood.h in your installed package by the one provided in the 00_nf_QC/bin folder.
 
 ### Prepare the required inputs
 
@@ -168,7 +164,7 @@ sbatch --export=BATCH_ID=Batch_1 ReadQC.sh
 nextflow log
 # monitor the current run
 cd /your_current_job_running_folder/
-less QC_MAIN.log
+tail -f QC_MAIN.log
 
 ```
 ## Authors
