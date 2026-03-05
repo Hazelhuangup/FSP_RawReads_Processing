@@ -94,7 +94,17 @@ def select_peaks(
 
 
 def classify_histogram(hist_path: Path) -> tuple[int, list[int]]:
-	data = pd.read_csv(hist_path, sep="\t", header=None, names=["k", "count"])
+	data = pd.read_csv(
+		hist_path,
+		sep=r"\s+",
+		header=None,
+		names=["k", "count"],
+		usecols=[0, 1],
+		comment=">",
+	)
+	data["k"] = pd.to_numeric(data["k"], errors="coerce")
+	data["count"] = pd.to_numeric(data["count"], errors="coerce")
+	data = data.dropna(subset=["k", "count"])
 	data = data[(data["k"] >= K_MIN) & (data["k"] <= K_MAX)].copy()
 	if data.empty:
 		return 0, []
@@ -129,9 +139,9 @@ def classify_histogram(hist_path: Path) -> tuple[int, list[int]]:
 def main() -> None:
 	if not SAMPLES_DIR.exists():
 		raise FileNotFoundError(f"Input folder not found: {SAMPLES_DIR}")
-	hist_files = sorted(SAMPLES_DIR.glob("*/*.hist"))
+	hist_files = sorted(SAMPLES_DIR.glob("*/*.reads.kmer_freq.hist"))
 	if not hist_files:
-		raise FileNotFoundError(f"No .hist files found under: {SAMPLES_DIR}")
+		raise FileNotFoundError(f"No *.reads.kmer_freq.hist files found under: {SAMPLES_DIR}")
 
 	rows = []
 	for hist_path in hist_files:
