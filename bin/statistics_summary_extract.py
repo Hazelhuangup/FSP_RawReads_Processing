@@ -48,7 +48,12 @@ def build_output_row(row):
     peak_position = ""
     note = ""
 
-    if peak_count == 0:
+    if peak1_fit_max < 60 and peak2_fit_max < 60:
+        shape = "NA"
+        est_size = "NA"
+        peak_position = "NA"
+        note = "uncertain"
+    elif peak_count == 0:
         shape = "L-shape"
         est_size = "NA"
         peak_position = "NA"

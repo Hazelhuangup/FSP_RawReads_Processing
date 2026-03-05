@@ -3,8 +3,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - matplotlib==3.10.1
-  - numpy==2.2.3
-  - python==3.13.9
-  - pandas==2.2.3
-  - seaborn==0.13.2
+  - fastk=1.2
+  - genomescope2=2.0.1
+  - numpy
+  - pandas
