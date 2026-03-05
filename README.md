@@ -18,6 +18,7 @@ The workflow was designed to process hundreds of samples in parallel.
 - [Nextflow workflow: FSP_RawReads_Processing](#nextflow-workflow-fsp_rawreads_processing)
   - [Overview](#overview)
     - [Input & Output](#input--output)
+    - [Current outputs](#current-outputs)
   - [Usage](#usage)
     - [Clone the repo](#clone-the-repo)
     - [Set up dependancies](#set-up-dependancies)
@@ -45,6 +46,45 @@ Outputs:
 - Sequencing complexity accumulating graphs for each sample
 - K-mer distribution graphs for each sample
 K-mer statistics of the whole batch, including uniq kmer number, total kmer number, estimated genome size, peak coverage etc.
+
+### Current outputs
+
+After one run, outputs are organized under `--OutDir` as below (replace `Batch_1` with your `--Batch_ID`):
+
+```
+${OutDir}/
+├── 01_ReadQC_report/Batch_1/
+│   ├── raw_reads_QC/
+│   │   ├── <Sample_ID>/
+│   │   └── fastQC_result.txt
+│   └── after_fastp_QC/
+│       ├── <Sample_ID>/
+│       └── fastQC_result.txt
+├── 02_Trimmed_reads/Batch_1/
+│   ├── <Sample_ID>/
+│   │   ├── <Sample_ID>_trimmed.R1.fq.gz
+│   │   ├── <Sample_ID>_trimmed.R2.fq.gz
+│   │   ├── <Sample_ID>_unmerged.R1.fq.gz
+│   │   ├── <Sample_ID>_unmerged.R2.fq.gz
+│   │   └── <Sample_ID>_merge.fq.gz
+│   └── 00_statistics/
+│       ├── <Sample_ID>_*.stats
+│       └── z_states_for_spreadsheet/
+│           ├── total_bp_merged.txt
+│           ├── total_bp_trimmed.txt
+│           └── Len_avg_merged.txt
+└── 05_KmerAnalysis/Batch_1/
+  ├── <Sample_ID>/
+  │   ├── <Sample_ID>.reads.kmer_freq.hist
+  │   ├── <Sample_ID>.kmer.log
+  │   ├── peak_1/
+  │   └── peak_2/
+  └── statistics/
+    ├── statistics_all.csv
+    └── kmer_profile_statistics_automated.csv
+```
+
+`fastQC_result.txt`, `z_states_for_spreadsheet/*.txt`, and `kmer_profile_statistics_automated.csv` are the main batch-level export files.
 
 ## Usage
 
@@ -115,6 +155,7 @@ nextflow run ReadQC.nf -profile conda -resume\
 ```
 #### 2. Run with submission script
 This Repo contains an example ReadQC.sh for running the pipeline in slurm managed HPC. Feel free to copy and replace the directories in ReadsQC.sh by yours. Make sure to set up your sbatch script according to your system settings. 
+FalcoQC/fqStat/kmer statistics compiling are integrated inside the Nextflow workflow, so no additional post-processing shell scripts are required after pipeline completion.
 Then submit the script by 
 ```
 sbatch --export=BATCH_ID=Batch_1 ReadQC.sh
@@ -136,7 +177,7 @@ less QC_MAIN.log
   - Royal Botanic Gardens, Kew
   - [ORCID profile](https://orcid.org/0000-0002-5015-7167)
 
-The other members of the FSP bioinformatics team, [Lia Obinu](https://github.com/LiaOb21) and [Niall Garvey](https://github.com/NiallG1), and [George Mears](https://github.com/George-Mears) also contributed to the development and testing of this part of the workflow.
+The other members of the FSP bioinformatics team, [Lia Obinu](https://github.com/LiaOb21) and [Niall Garvey](https://github.com/NiallG1), and [George Mears](https://github.com/George-Mears) also contributed to the development and testing of this part of the workflow. This is a stand alone pipeline for read processing. The full pipeline including read processing, genome assembly and assessment, and decontamination could be found at: [fspassemblypipeline] (https://github.com/RBGKew/fspassemblypipeline/tree/main).
 
 ## Citation
 Please cite the URL or DOI (10.5281/zenodo.17608339) if you use this workflow in a paper.
@@ -144,4 +185,4 @@ Please cite the URL or DOI (10.5281/zenodo.17608339) if you use this workflow in
 ## References
 1. P. Di Tommaso, et al. Nextflow enables reproducible computational workflows. Nature Biotechnology 35, 316–319 (2017) doi:10.1038/nbt.3820
 2. Shifu Chen, et al, fastp: an ultra-fast all-in-one FASTQ preprocessor, Bioinformatics 34(17) 884–890 (2018), https://doi.org/10.1093/bioinformatics/bty560
-3. de Sena Brandine G and Smith AD. Falco: high-speed FastQC emulation for quality control of sequencing data. F1000Research 8, 1874 (2021), https://doi.org/10.12688/f1000research.21142.2)
+3. de Sena Brandine G and Smith AD. Falco: high-speed FastQC emulation for quality control of sequencing data. F1000Research 8, 1874 (2021), https://doi.org/10.12688/f1000research.21142.2

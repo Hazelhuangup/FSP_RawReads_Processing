@@ -82,6 +82,10 @@ include {fastp} from './modules/fastp.nf'
  */
 
 include {falcoQCafterFastp} from './modules/falcoQCafterFastp.nf'
+include {
+  falcoQCstatCompiling as falcoQCRawStatCompiling
+  falcoQCstatCompiling as falcoQCAfterFastpStatCompiling
+} from './modules/falcoQCstatCompiling.nf'
 
 
 /*
@@ -89,13 +93,14 @@ include {falcoQCafterFastp} from './modules/falcoQCafterFastp.nf'
  */
 
 include {kmerAnalysis} from './modules/kmerAnalysis.nf'
+include {kmerStatSummary} from './modules/kmerStatSummary.nf'
 
 
 /*
  * Step 5: collect statistics of each step
  */
 
-include {fqStat} from './modules/fqStat.nf'
+include {fqStat; fqStatSummary} from './modules/fqStat.nf'
 
 
 
@@ -114,7 +119,7 @@ sample_ID_ch = Channel.fromPath(params.Li)
 
 workflow {
 
-    falcoQC(sample_ID_ch)
+  falcoQC_raw_out_ch = falcoQC(sample_ID_ch)
 
     fastp_out_ch = fastp(sample_ID_ch)
 
@@ -127,8 +132,12 @@ workflow {
         }
         .filter { sample_ID, files -> files.size() > 0 }
 
-    falcoQCafterFastp(fastp_fastq_ch)
-    kmerAnalysis(fastp_fastq_ch)
+    falcoQC_after_fastp_out_ch = falcoQCafterFastp(fastp_fastq_ch)
+    falcoQCRawStatCompiling(falcoQC_raw_out_ch.collect().map { dirs -> tuple('raw_reads_QC', dirs) })
+    falcoQCAfterFastpStatCompiling(falcoQC_after_fastp_out_ch.collect().map { dirs -> tuple('after_fastp_QC', dirs) })
+    kmer_out_ch = kmerAnalysis(fastp_fastq_ch)
+    kmerStatSummary(kmer_out_ch.done.collect())
     fqStat_out_ch = fqStat(fastp_fastq_ch)
+    fqStatSummary(fqStat_out_ch.collect())
 }
 
