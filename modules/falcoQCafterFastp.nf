@@ -12,8 +12,7 @@ process falcoQCafterFastp {
 		tuple val(sample_ID), path(fastq_files)
 
 	output:
-		path "${sample_ID}/*txt"
-		path "${sample_ID}/*html"
+		path "${sample_ID}"
 
 	script:
 	"""
