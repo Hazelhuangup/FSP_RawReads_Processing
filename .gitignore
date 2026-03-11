@@ -12,3 +12,6 @@ statistics/
 # Conda / Micromamba envs and locks
 envs/*.lock
 envs/env-*/
+
+# example files for AI
+modules/extract_seqs.nf
