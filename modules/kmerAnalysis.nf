@@ -40,8 +40,8 @@ process kmerAnalysis {
     FastK -k17 -T${task.cpus} -v -M8 -N${sample_ID} ${params.KA_args} \$R1 \$R2 1>${sample_ID}.fastK.log 2>&1
     Histex -G ${sample_ID}.hist > ${sample_ID}.reads.kmer_freq.hist
 
-    genomescope.R -i ${sample_ID}.reads.kmer_freq.hist -o peak_1 -p 1 -k 17 >${sample_ID}.genomescope.log
-    genomescope.R -i ${sample_ID}.reads.kmer_freq.hist -o peak_2 -p 2 -k 17 >>${sample_ID}.genomescope.log
+    GeneScopeFK.R -i ${sample_ID}.reads.kmer_freq.hist -o peak_1 -p 1 -k 17 >${sample_ID}.genomescope.log
+    GeneScopeFK.R -i ${sample_ID}.reads.kmer_freq.hist -o peak_2 -p 2 -k 17 >>${sample_ID}.genomescope.log
 
     """
 }
