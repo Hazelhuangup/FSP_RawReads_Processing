@@ -40,8 +40,8 @@ process kmerAnalysis {
     FastK -k17 -T${task.cpus} -v -M8 -N${sample_ID} ${params.KA_args} \$R1 \$R2 1>${sample_ID}.fastK.log 2>&1
     Histex -G ${sample_ID}.hist > ${sample_ID}.reads.kmer_freq.hist
 
-    GeneScopeFK.R -i ${sample_ID}.reads.kmer_freq.hist -o peak_1 -p 1 -k 17  >${sample_ID}.genomescope.log 2>&1 || echo "Warning: genomescope.R peak_1 failed (Input files are too small)" >&2
-    GeneScopeFK.R -i ${sample_ID}.reads.kmer_freq.hist -o peak_2 -p 2 -k 17 >>${sample_ID}.genomescope.log 2>&1 || echo "Warning: genomescope.R peak_2 failed (Input files are too small)" >&2
+    genomescope.R -i ${sample_ID}.reads.kmer_freq.hist -o peak_1 -p 1 -k 17 >${sample_ID}.genomescope.log 2>&1 || echo "Warning: genomescope.R peak_1 failed (Input files are too small)" >&2
+    genomescope.R -i ${sample_ID}.reads.kmer_freq.hist -o peak_2 -p 2 -k 17 >>${sample_ID}.genomescope.log 2>&1 || echo "Warning: genomescope.R peak_2 failed (Input files are too small)" >&2
 
     """
 }
