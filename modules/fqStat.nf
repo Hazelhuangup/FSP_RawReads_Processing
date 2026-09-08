@@ -42,12 +42,12 @@ process fqStatSummary {
         stat_base=\$(basename "\$stat")
 
         if [[ "\$stat_base" == *merge.fq.gz.stats ]]; then
-            grep 'Total' "\$stat" >> z_states_for_spreadsheet/total_bp_merged.txt
-            grep 'Average' "\$stat" >> z_states_for_spreadsheet/Len_avg_merged.txt
+            grep -H 'Total' "\$stat" >> z_states_for_spreadsheet/total_bp_merged.txt
+            grep -H 'Average' "\$stat" >> z_states_for_spreadsheet/Len_avg_merged.txt
         fi
 
         if [[ "\$stat_base" == *trimmed*.fq.gz.stats ]]; then
-            grep 'Total' "\$stat" >> z_states_for_spreadsheet/total_bp_trimmed.txt
+            grep -H 'Total' "\$stat" >> z_states_for_spreadsheet/total_bp_trimmed.txt
         fi
     done
     """
